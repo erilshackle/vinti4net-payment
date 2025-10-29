@@ -8,7 +8,7 @@
         <meta name="author" content="Eril TS Carvalho">
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Recarga - Vinti4Net PHP SDK</title>
+        <title>exemplo - Vinti4Net PHP SDK</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -47,7 +47,7 @@
                                 <a href="../pagamento-servico/" class="nav-link">Serviço</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./" class="nav-link active" aria-current="page">Recarga</a>
+                                <a href="../recarga/" class="nav-link">Recarga</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../callback/" class="nav-link">Callback</a>
@@ -70,7 +70,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../example/" class="nav-link">exemplo</a>
+                                <a href="./" class="nav-link active" aria-current="page">exemplo</a>
                             </li>
                         </ul>
 
@@ -81,12 +81,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../pagamento-servico/" class="nav-link">
+                                <a rel="prev" href="../classes/payment-result/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../callback/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -108,13 +108,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#recarga" class="nav-link">📱 Recarga</a>
+            <li class="nav-item" data-bs-level="1"><a href="#exemplo-de-integracao-vinti4net-ambiente-de-teste" class="nav-link">💳 Exemplo de Integração Vinti4Net (Ambiente de Teste)</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#1-criando-a-requisicao" class="nav-link">1️⃣ Criando a Requisição</a>
+            <li class="nav-item" data-bs-level="2"><a href="#preparacao-do-ambiente" class="nav-link">⚙️ Preparação do ambiente</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#2-renderizando-o-formulario" class="nav-link">2️⃣ Renderizando o Formulário</a>
+            <li class="nav-item" data-bs-level="2"><a href="#arquivo-post-vinti4php" class="nav-link">🧾 Arquivo post-vinti4.php</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arquivo-response-vinti4php" class="nav-link">🧾 Arquivo response-vinti4.php</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#testar-submissao" class="nav-link">🧪 Testar Submissão</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#dica-de-teste-com-https" class="nav-link">🧰 Dica de Teste com HTTPS</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -125,30 +137,135 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="recarga">📱 Recarga</h1>
-<p>Transações de <strong>Recarga</strong> (TransactionCode = '3') requerem <code>entityCode</code> (operadora) e <code>referenceNumber</code> (número do telemóvel).</p>
+<h1 id="exemplo-de-integracao-vinti4net-ambiente-de-teste">💳 Exemplo de Integração Vinti4Net (Ambiente de Teste)</h1>
+<p>Este exemplo demonstra como realizar uma <strong>requisição de pagamento</strong> e processar a <strong>resposta da SISP (Vinti4)</strong> usando a biblioteca <code>Erilshk\Vinti4Net</code>.</p>
 <hr />
-<h2 id="1-criando-a-requisicao">1️⃣ Criando a Requisição</h2>
-<pre><code class="language-php">
+<h2 id="preparacao-do-ambiente">⚙️ Preparação do ambiente</h2>
+<ol>
+<li>Instale as dependências via <strong>Composer</strong>:</li>
+</ol>
+<pre><code class="language-bash">   composer require erilshk/vinti4net
+</code></pre>
+<ol>
+<li>Crie um ambiente local de testes:</li>
+</ol>
+<pre><code class="language-bash">php -S localhost:8000 -t tests/web
+</code></pre>
+<ol>
+<li>No navegador, acesse:</li>
+</ol>
+<p>👉 <a href="http://localhost:8000/">http://localhost:8000/</a></p>
+<hr />
+<h2 id="arquivo-post-vinti4php">🧾 Arquivo <code>post-vinti4.php</code></h2>
+<pre><code class="language-php">&lt;?php
+
+//* Edite com as suas credenciais abaixo e siga as instruções para teste:
+# no terminal: php -S localhost:8000 -t tests/web
+# no navegador: http://localhost:8000/post-vinti4.php
+# depois verifique o response-vinti4.php
+
 use Erilshk\Vinti4Net\PaymentClient;
 
-$client = new PaymentClient(posId: 'VINTI4_POS_ID', posAutCode: 'VINTI4_POS_AUTCODE');
+include &quot;../../vendor/autoload.php&quot;;
 
+// por segurança use variáveis no .env
+define('VINTI4_POS_ID', 'meu-posid');
+define('VINTI4_POS_AUTCODE', 'meu-pos-autcode');
+define('VINTI4_RESPONSE_URL', 'http://localhost:8000/response-vinti4.php');
+define('VINTI4_ENDPOINT', 'https://mc.vinti4net.cv/Client_VbV_v2/biz_vbv_clientdata.jsp');
 
-$prequest = $client-&gt;createRechargePayment(
-    amount: 100.00,
-    responseUrl: 'https://seuapp.cv/processar-vinti4-callback',
-    entityCode: '001',       // Operadora
-    referenceNumber: '991234567' // Número do telemóvel
+$valor = $_POST['price'] ?? 150;
+
+// Instanciação para teste (opcional)
+$client = new PaymentClient(
+    posID: VINTI4_POS_ID,
+    posAutCode: VINTI4_POS_AUTCODE,
+    endpoint: VINTI4_ENDPOINT
 );
-</code></pre>
-<h2 id="2-renderizando-o-formulario">2️⃣ Renderizando o Formulário</h2>
-<pre><code class="language-php">echo $client-&gt;renderPaymentForm($prequest);
+
+$request = $client-&gt;createPurchasePayment(amount: $valor, responseUrl: VINTI4_RESPONSE_URL);
+
+// Dados de Billing obrigatórios
+$request-&gt;setBilling(
+    email: 'cliente@exemplo.com',
+    country: '132',
+    city: 'Mindelo',
+    address: 'Rua Amílcar Cabral, 10',
+    postalCode: '2110'
+);
+
+echo $client-&gt;renderPaymentForm($request);
 exit;
 </code></pre>
+<hr />
+<h2 id="arquivo-response-vinti4php">🧾 Arquivo <code>response-vinti4.php</code></h2>
+<pre><code class="language-php">&lt;?php
+
+//* Edite as credenciais abaixo e siga as instruções:
+# Esta página deveria ser chamada pela resposta da SISP ao responseUrl
+# No entanto, isso pode não funcionar pois é requerido HTTPS para receber a resposta.
+//? Para testes, use um túnel como ngrok por exemplo:
+
+use Erilshk\Vinti4Net\PaymentClient;
+use Erilshk\Vinti4Net\PaymentResult;
+
+include &quot;../../vendor/autoload.php&quot;;
+
+// por segurança use variáveis no .env
+define('VINTI4_POS_ID', 'meu-posid');
+define('VINTI4_POS_AUTCODE', 'meu-pos-autcode');
+
+// Instanciação para teste
+$client = new PaymentClient(
+    posID: VINTI4_POS_ID,
+    posAutCode: VINTI4_POS_AUTCODE,
+);
+
+/** @var PaymentResult */
+$result = $client-&gt;processResponse($_POST);
+
+if ($result-&gt;succeeded()) {
+    echo &quot;Pagamento aprovado!&quot;;
+    $referencia = $result-&gt;data['merchantRespMerchantRef'];
+    echo $result-&gt;generateReceipt(); // opcional
+} elseif ($result-&gt;status === $result::STATUS_FINGERPRINT_INVALID) {
+    error_log(&quot;Falha de segurança: Fingerprint inválido!&quot;);
+} else {
+    echo &quot;Pagamento falhou ou foi cancelado:&lt;br&gt;&quot;;
+    echo $result-&gt;message;
+}
+exit;
+</code></pre>
+<hr />
+<h2 id="testar-submissao">🧪 Testar Submissão</h2>
+<p>Use o formulário abaixo para simular uma compra:</p>
+<form action="http://localhost:8000/post-vinti4.php" method="POST" target="_blank">
+  <label for="price"><strong>Valor (ECV):</strong></label>
+  <input type="number" id="price" name="price" value="100" min="0" step="100" required>
+  <button type="submit">💳 Testar Pagamento</button>
+</form>
+<p><small style="opacity: 50%; font-size: smaller">vai submeter para: http://localhost:<strong>8000</strong>/post-vinti4.php</small>
+<br></p>
 <blockquote>
-<p>Não é necessário enviar dados de billing.</p>
-</blockquote></div>
+<p>💡 <em>Este formulário abrirá a página <code>post-vinti4.php</code>, que cria a requisição de pagamento e redireciona para o ambiente de testes da SISP.</em></p>
+</blockquote>
+<hr />
+<h2 id="dica-de-teste-com-https">🧰 Dica de Teste com HTTPS</h2>
+<p>A SISP exige HTTPS para enviar respostas automáticas.
+Para testes locais, utilize um túnel como <strong>ngrok</strong>:</p>
+<pre><code class="language-bash">ngrok http 8000
+</code></pre>
+<p>Depois, substitua a variável <code>VINTI4_RESPONSE_URL</code> por algo como:</p>
+<pre><code>https://1234abcd.ngrok.io/response-vinti4.php
+</code></pre>
+<hr />
+<p>✅ <strong>Próximos passos:</strong></p>
+<ul>
+<li>Ajuste suas credenciais de teste fornecidas pela SISP.</li>
+<li>Teste diferentes valores de compra.</li>
+<li>Valide o fluxo completo até o <code>response-vinti4.php</code>.</li>
+</ul>
+<hr /></div>
             </div>
         </div>
 

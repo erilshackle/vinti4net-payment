@@ -13,3 +13,4 @@ nav:
       - PaymentClient: classes/payment-client.md
       - PaymentRequest: classes/payment-request.md
       - PaymentResult: classes/payment-result.md
+  - exemplo: 'example.md'

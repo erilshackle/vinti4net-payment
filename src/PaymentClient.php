@@ -234,6 +234,49 @@ class PaymentClient
         ];
     }
 
+    private function formatUserBillingData(array $u)
+    {
+        $fmtDate = function ($ts) {
+            return (empty($ts)) ? null : date('Ymd', is_numeric($ts) ? $ts : strtotime($ts));
+        };
+        $user = [
+            'acctID'           => $u['id'] ?? null,
+            'email'            => $u['email'] ?? null,
+            'billAddrCountry'  => $u['country'] ?? null,
+            'billAddrCity'     => $u['city'] ?? null,
+            'billAddrLine1'    => $u['address'] ?? $u['address1'] ?? null,
+            'billAddrLine2'    => $u['address2'] ?? null,
+            'billAddrLine3'    => $u['address3'] ?? null,
+            'billAddrPostCode' => $u['postCode'] ?? null,
+            'mobilePhone' => [
+                "cc" => isset($u['phone']) ? "138" : null, 
+                "subscriber" => $u['phone'] ?? null 
+            ],
+            'acctInfo' => [
+                'chAccAgeInd'           => $u['chAccAgeInd'] ?? '05',
+                'chAccDate'             => $fmtDate($u['created_at'] ?? null),
+                'chAccChange'           => $fmtDate($u['updated_at'] ?? null),
+                'chAccPwChange'         => $fmtDate($u['pw_changed_at'] ?? null),
+                'chAccPwChangeInd'      => $u['chAccPwChangeInd'] ?? '05',
+                'suspiciousAccActivity' => $u['suspicious'] ?? '01',
+            ],
+        ];
+        // 🔹 remove campos vazios recursivamente
+        $clean = function ($arr) use (&$clean) {
+            return array_filter($arr, function ($v) {
+                return !is_null($v) && $v !== '';
+            }, ARRAY_FILTER_USE_BOTH);
+        };
+        $user = $clean($user);
+        if (isset($user['acctInfo'])) {
+            $user['acctInfo'] = $clean($user['acctInfo']);
+        }
+        if (isset($user['mobilePhone'])) {
+            $user['mobilePhone'] = $clean($user['acctInfo']);
+        }
+        return $user;
+    }
+
     // ----------------------------------------------------------------------
     // PUBLIC: Métodos de Criação de Pagamento
     // ----------------------------------------------------------------------
@@ -245,7 +288,10 @@ class PaymentClient
      * @param float $amount Valor da transação (ex: 1000).
      * @param string $responseUrl URL de callback.
      * @param array{
-     *  user?:array,merchantRef?:string, merchantSession?:string, languageMessages?:string, currency?:string
+     *  merchantRef?:string, merchantSession?:string, languageMessages?:string, currency?:string,
+     * user?:array{
+     * 
+     * }
      * } $extra Outras opções (merchantRef, merchantSession, languageMessages, currency, user etc.).
      * @return PaymentRequest O objeto DTO pronto para ter o billingData adicionado e ser renderizado.
      */
@@ -260,8 +306,11 @@ class PaymentClient
         // Se o array 'user' for passado no $extra, ele é armazenado no billingData.
         // Isso é útil para fins de debug e contexto, mesmo que não seja o 3DS final.
         if (isset($extra['user']) && is_array($extra['user'])) {
-            $prequest->billingData = array_merge($prequest->billingData, $extra['user']);
+            $user = $this->formatUserBillingData($extra['user']);
+            // 🔹 mescla com billingData existente
+            $prequest->billingData = array_merge($prequest->billingData, $user);
         }
+
 
         $prequest->merchantRef = $extra['merchantRef'] ?? ('R' . date('YmdHis'));
         $prequest->merchantSession = $extra['merchantSession'] ?? ('S' . date('YmdHis'));

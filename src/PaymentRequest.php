@@ -106,7 +106,7 @@ class PaymentRequest
      * @param array<string, mixed> $extra Dados adicionais.
      * @return $this
      */
-    public function addBillingExtras(array $extra): self
+    public function addBillingExtra(array $extra): self
     {
         $this->billingData = array_merge($this->billingData, $extra);
         return $this;
