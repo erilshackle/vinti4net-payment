@@ -1,22 +1,9 @@
 <?php
 
-//* Edite as credenciais abaixo e siga as instrucoes:
-# esta pagina deveria ser chamada pelo responsta da SISP ao responseUrl
-# No entando isso pode não funcionar pois é requerido HTTPS para receber a resposta. oq fazer para testes?
-//? Para testes, use um tunel como ngrok por exemplo;
-
-//! É extrememente cirucrgico seguinte os passos assim como dito para comprovar os testes
-// todo: De forma análoga prepare seu proprio ambiente de teste e execute os passos.
-
 use Erilshk\Vinti4Net\PaymentClient;
-use Erilshk\Vinti4Net\PaymentResult;
 
 include "../../vendor/autoload.php";
-
-// por segurança use variaveis no .env
-// por segurança use variaveis no .env
-define('VINTI4_POS_ID', 'meu-posid');   
-define('VINTI4_POS_AUTCODE', 'meu-pos-autcode');
+include "./credentials.php";
 
 // Instanciação para teste (opcional)
 $client = new PaymentClient(
@@ -24,8 +11,8 @@ $client = new PaymentClient(
     posAutCode: VINTI4_POS_AUTCODE,
 );
 
-/** @var PaymentResult */
-$result = $client->processResponse(postData: $_POST);
+/** @var \Erilshk\Vinti4Net\PaymentResult */
+$result = $client->processResponse($_POST);
 
 if ($result->succeeded()) {
     echo "Pagamento aprovado!";

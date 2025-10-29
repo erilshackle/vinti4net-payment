@@ -69,6 +69,7 @@
 </head>
 <body>
   <div class="container">
+    <img src="https://comerciante.vinti4.cv/images/logo_vinti4.jpg" alt="" width="32">
     <h1>Teste de Pagamento Vinti4Net</h1>
 
     <form action="post-vinti4.php" method="POST" target="_blank">
