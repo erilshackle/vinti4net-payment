@@ -1,7 +1,7 @@
 # 💳 Vinti4Net PHP SDK (`erilshk/vinti4net-payment`)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/erilshk/vinti4net-payment.svg)](https://packagist.org/packages/erilshk/vinti4net-payment)
-[![License](https://img.shields.io/github/license/erilshk/vinti4net-payment)](https://github.com/erilshk/vinti4net-payment/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/erilshk/vinti4net-payment)](https://github.com/erilshackle/vinti4net-payment/blob/main/LICENSE)
 [![PHP Version](https://img.shields.io/packagist/php-v/erilshk/vinti4net-payment.svg)](https://packagist.org/packages/erilshk/vinti4net-payment)
 
 Uma biblioteca **PHP simples e robusta** para integrar com o **Vinti4Net Payment Gateway** (SISP – Sistema Interbancário de Pagamentos de Cabo Verde).
