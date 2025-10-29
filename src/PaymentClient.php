@@ -14,7 +14,10 @@ use Erilshk\Vinti4Net\Exception\ValidationException;
  *  - geração de PurchaseRequest para 3DS
  *  - renderização de formulários HTML para submissão
  *  - validação e processamento de respostas/callbacks
- *
+ * 
+ * @author Eril TS
+ * @license MIT
+ * @see https://github.com/erilshk/vinti4net-payment
  * @package Erilshk\Vinti4Net
  */
 class PaymentClient
