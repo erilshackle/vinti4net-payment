@@ -31,7 +31,7 @@ O **Vinti4Net PHP SDK** fornece uma integração segura com o **Vinti4Net Paymen
 * PurchaseRequest 3DS
 * Validação de Callback
 
-O SDK é compatível com **PHP 7.4+** e foi desenvolvido para simplificar fluxos de pagamento em aplicativos PHP.
+O SDK é compatível com **PHP 8.1+** e foi desenvolvido para simplificar fluxos de pagamento em aplicativos PHP.
 
 ---
 
@@ -60,19 +60,20 @@ composer require erilshk/vinti4net-payment
 ```php
 use Erilshk\Vinti4Net\PaymentClient;
 
-$client = new PaymentClient('SEU_POS_ID', 'SEU_POS_AUT_CODE_SECRETO');
+$client = new PaymentClient('VINTI4_POS_ID', 'VINTI4_POS_AUTCODE');
 // Ambiente de teste (opcional)
-$client_test = new PaymentClient('POS_ID_TESTE', 'AUT_CODE_TESTE', 'https://staging.vinti4net.cv/BizMPIOnUs/CardPayment');
+$client_test = new PaymentClient('VINTI4_POS_ID', 'VINTI4_POS_AUTCODE', 'https://3dsteste.vinti4net.cv/endpoint.php');
 ```
 
 ---
 
 ## Criando Pagamentos
 
+
 ### Compra (TransactionCode='1')
 
 ```php
-$request = $client->createPurchasePayment(150.00, 'https://seuapp.cv/callback-vinti4', [
+$request = $client->createPurchasePayment(1500.00, 'https://seuapp.cv/callback-vinti4', [
     'user' => [
         'email' => 'cliente@exemplo.com',
         'country' => '132',
@@ -92,8 +93,8 @@ exit;
 $serviceRequest = $client->createServicePayment(
     500.00,
     'https://seuapp.cv/callback-vinti4',
-    '123',     // entityCode
-    '456789'   // referenceNumber
+    'FAT123',     // entityCode
+    '123456789'   // reference
 );
 
 echo $client->renderPaymentForm($serviceRequest);
@@ -107,7 +108,7 @@ $rechargeRequest = $client->createRechargePayment(
     200.00,
     'https://seuapp.cv/callback-vinti4',
     'OP123',  // entityCode
-    '987654'  // referenceNumber
+    '9876545'  // referenceNumber
 );
 
 echo $client->renderPaymentForm($rechargeRequest);
@@ -166,9 +167,9 @@ try {
 
 ### PaymentRequest
 
-* `setAmount(float $amount)`
-* `setResponseUrl(string $url)`
-* `setMerchantRef(string $ref)`
+* `merchantRef`
+* `merchantSession`
+* `merchantSession`
 * `setBilling(array $billingData)`
 
 ### PaymentResult
