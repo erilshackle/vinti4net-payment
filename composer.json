@@ -1,7 +1,7 @@
 {
     "name": "erilshk/vinti4net-payment",
     "description": "SDK PHP para integração com a plataforma de Pagamento Web Vinti4Net de Cabo Verde (3DS, Fingerprint, PurchaseRequest).",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "minimum-stability": "stable",
