@@ -18,6 +18,6 @@
 
 define('VINTI4_POS_ID', 'meu-posid');   
 define('VINTI4_POS_AUTCODE', 'meu-pos-autcode');
+define('VINTI4_ENDPOINT', 'http://localhost:8000/action.html');
 define('VINTI4_RESPONSE_URL', 'http://localhost:8000/response-vinti4.php');
-define('VINTI4_ENDPOINT', 'https://mc.vinti4net.cv/Client_VbV_v2/biz_vbv_clientdata.jsp');
 
