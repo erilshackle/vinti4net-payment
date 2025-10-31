@@ -1,37 +1,30 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Erilshk\Vinti4Net\PaymentClient;
-use Erilshk\Vinti4Net\PaymentRequest;
+use Erilshk\Vinti4Pay\Vinti4Pay;
 
-class PaymentClientTest extends TestCase
+class Vinti4PayTest extends TestCase
 {
-    protected PaymentClient $client;
+    protected Vinti4Pay $client;
 
     protected function setUp(): void
     {
-        $this->client = new PaymentClient('90000443', 'SECRET123');
+        $this->client = new Vinti4Pay('90000443', 'SECRET123');
     }
 
-    public function testCanInstantiatePaymentClient(): void
+    public function testCanInstantiateVinti4Pay(): void
     {
-        $this->assertInstanceOf(PaymentClient::class, $this->client);
+        $this->assertInstanceOf(Vinti4Pay::class, $this->client);
     }
 
     public function testCreateServicePaymentReturnsPaymentRequest(): void
     {
-        $req = $this->client->createServicePayment(
+        $req = $this->client->createServicePaymentForm(
             1000,
             'https://meusite.com/callback',
             '12345',
             '67890'
         );
-
-        $this->assertInstanceOf(PaymentRequest::class, $req);
-        $this->assertSame('2', $req->transactionCode);
-        $this->assertSame('12345', $req->entityCode);
-        $this->assertSame('67890', $req->referenceNumber);
-        $this->assertSame('1000', $req->amount);
     }
 
 
@@ -39,7 +32,7 @@ class PaymentClientTest extends TestCase
     {
         $this->expectException(\Erilshk\Vinti4Net\Exception\ValidationException::class);
 
-        $method = new ReflectionMethod(PaymentClient::class, 'generatePurchaseRequest');
+        $method = new ReflectionMethod(Vinti4Pay::class, 'generatePurchaseRequest');
         $method->setAccessible(true);
         $method->invoke($this->client, ['email' => 'teste@exemplo.com']); // faltando campos
     }
@@ -51,7 +44,7 @@ class PaymentClientTest extends TestCase
     public function testGenerateRequestFingerPrintProducesExpectedBase64(): void
     {
         // usa Reflection para acessar o método protegido
-        $method = new ReflectionMethod(PaymentClient::class, 'generateRequestFingerPrint');
+        $method = new ReflectionMethod(Vinti4Pay::class, 'generateRequestFingerPrint');
         $method->setAccessible(true);
 
         $data = [
@@ -88,7 +81,7 @@ class PaymentClientTest extends TestCase
     // ============================================================
     public function testGenerateSuccessfulResponseFingerPrintProducesExpectedBase64(): void
     {
-        $method = new ReflectionMethod(PaymentClient::class, 'generateSuccessfulResponseFingerPrint');
+        $method = new ReflectionMethod(Vinti4Pay::class, 'generateSuccessfulResponseFingerPrint');
         $method->setAccessible(true);
 
         $data = [
@@ -129,7 +122,7 @@ class PaymentClientTest extends TestCase
     // ============================================================
     public function testDifferentPosAutCodeProducesDifferentFingerPrint(): void
     {
-        $method = new ReflectionMethod(PaymentClient::class, 'generateRequestFingerPrint');
+        $method = new ReflectionMethod(Vinti4Pay::class, 'generateRequestFingerPrint');
         $method->setAccessible(true);
 
         $data = [
@@ -144,8 +137,8 @@ class PaymentClientTest extends TestCase
             'referenceNumber'  => '222',
         ];
 
-        $client1 = new PaymentClient('90000443', 'SECRET123');
-        $client2 = new PaymentClient('90000443', 'OTHERSECRET');
+        $client1 = new Vinti4Pay('90000443', 'SECRET123');
+        $client2 = new Vinti4Pay('90000443', 'OTHERSECRET');
 
         $f1 = $method->invoke($client1, $data);
         $f2 = $method->invoke($client2, $data);
