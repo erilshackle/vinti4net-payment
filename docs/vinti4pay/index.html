@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Eril TS Carvalho" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Referência - Vinti4Pay PHP SDK</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Refer\u00eancia";
+        var mkdocs_page_input_path = "vinti4pay.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Vinti4Pay PHP SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Instalação e Uso</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../payments/">Pagamentos</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../callback/">Callback / Retorno</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../refund.md">Estorno (Refund)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../exemplos/">Exemplos</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Referência</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#transaction-codes">🔹 Transaction Codes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metodo-central-preparepayment">⚙️ Método Central — preparePayment()</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#parametros">Parâmetros</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#opcoes-options">Opções (options)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#campos-de-billing-para-compra">Campos de Billing (para Compra)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metodos-diretos-de-pagamento">🔹 Métodos Diretos de Pagamento</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-compra">1️⃣ Compra</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-pagamento-de-servico">2️⃣ Pagamento de Serviço</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-recarga">3️⃣ Recarga</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exemplo-de-uso-compra">📝 Exemplo de Uso — Compra</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#callback-response">🔹 Callback / Response</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#processando-o-callback">Processando o callback</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#estrutura-do-retorno-processresponse">Estrutura do Retorno (processResponse)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exemplo-com-vinti4result">Exemplo com Vinti4Result</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#observacoes-tecnicas">⚠️ Observações Técnicas</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../about.md">Sobre</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Vinti4Pay PHP SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Referência</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/erilshackle/vinti4pay-php/edit/master/docs/vinti4pay.md">Edit on erilshk/vinti4pay-php</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="vinti4pay-php-sdk-pagamentos">💳 Vinti4Pay PHP SDK — Pagamentos</h1>
+<p>Esta documentação detalha como integrar pagamentos usando o <strong>Vinti4Pay PHP SDK</strong> (Compra, Pagamento de Serviço e Recarga) com exemplos, tabela de campos de faturação, e detalhes do callback.</p>
+<hr />
+<h2 id="transaction-codes">🔹 Transaction Codes</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Tipo de Pagamento</th>
+<th>Campos Obrigatórios</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Compra</td>
+<td><code>billing</code> (array com dados de faturação)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pagamento de Serviço</td>
+<td><code>entityCode</code>, <code>referenceNumber</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Recarga</td>
+<td><code>entityCode</code>, <code>referenceNumber</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Todos os pagamentos usam <strong><code>preparePayment()</code></strong> como método central.</p>
+</blockquote>
+<hr />
+<h2 id="metodo-central-preparepayment">⚙️ Método Central — <code>preparePayment()</code></h2>
+<pre><code class="language-php">public function preparePayment(
+    float|string $amount,
+    string $responseUrl,
+    array $options = []
+): array
+</code></pre>
+<h3 id="parametros">Parâmetros</h3>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>amount</code></td>
+<td>float/string</td>
+<td>Sim</td>
+<td>Valor da transação em CVE (multiplicado internamente por 1000)</td>
+</tr>
+<tr>
+<td><code>responseUrl</code></td>
+<td>string</td>
+<td>Sim</td>
+<td>URL de callback que receberá o retorno da transação</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>array</td>
+<td>Não</td>
+<td>Opções adicionais (detalhadas abaixo)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="opcoes-options">Opções (<code>options</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Chave</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>transactionCode</code></td>
+<td>string</td>
+<td>Não</td>
+<td>Tipo de transação (<code>1</code>= <u>Compra</u>, <code>2</code>=Serviço, <code>3</code>=Recarga).</td>
+</tr>
+<tr>
+<td><code>billing</code></td>
+<td>array</td>
+<td>Apenas para Compra</td>
+<td><a href="#campos-de-billing-para-compra">Dados de faturação <strong>PurchaseRequest</strong></a></td>
+</tr>
+<tr>
+<td><code>merchantRef</code></td>
+<td>string</td>
+<td>Não, mas recomendado</td>
+<td>Referência da transação; gerada automaticamente se não fornecida</td>
+</tr>
+<tr>
+<td><code>merchantSession</code></td>
+<td>string</td>
+<td>Não, mas recomendado</td>
+<td>Sessão da transação; gerada automaticamente se não fornecida</td>
+</tr>
+<tr>
+<td><code>languageMessages</code></td>
+<td>string</td>
+<td>Não</td>
+<td>Idioma das mensagens do gateway (ex: <code>en</code>, <code>pt</code>)</td>
+</tr>
+<tr>
+<td><code>entityCode</code></td>
+<td>string</td>
+<td>Apenas Serviço/Recarga</td>
+<td>Código da entidade (numérico)</td>
+</tr>
+<tr>
+<td><code>referenceNumber</code></td>
+<td>string</td>
+<td>Apenas Serviço/Recarga</td>
+<td>Número de referência (numérico)</td>
+</tr>
+<tr>
+<td><code>currency</code></td>
+<td>string</td>
+<td>Não</td>
+<td>Código da moeda; padrão: CVE (<code>132</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="campos-de-billing-para-compra">Campos de Billing (para Compra)</h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billAddrCountry</code></td>
+<td>string</td>
+<td><strong>Sim</strong></td>
+<td>Código númerico do país (ex: <code>132</code>) - <a href="https://www.iban.com/country-codes" target="_blank">lista</a></td>
+</tr>
+<tr>
+<td><code>billAddrCity</code></td>
+<td>string</td>
+<td><strong>Sim</strong></td>
+<td>Cidade do cliente</td>
+</tr>
+<tr>
+<td><code>billAddrLine1</code></td>
+<td>string</td>
+<td><strong>Sim</strong></td>
+<td>Endereço principal</td>
+</tr>
+<tr>
+<td><code>billAddrLine2</code></td>
+<td>string</td>
+<td>Não</td>
+<td>Complemento do endereço</td>
+</tr>
+<tr>
+<td><code>billAddrLine3</code></td>
+<td>string</td>
+<td>Não</td>
+<td>Complemento adicional</td>
+</tr>
+<tr>
+<td><code>billAddrPostCode</code></td>
+<td>string</td>
+<td><strong>Sim</strong></td>
+<td>Código postal - <a href="https://codigopostal.cv/" target="_blank">lista</a></td>
+</tr>
+<tr>
+<td><code>billAddrState</code></td>
+<td>string</td>
+<td>Não</td>
+<td>Estado / região</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td><strong>Sim</strong></td>
+<td>Email do cliente</td>
+</tr>
+<tr>
+<td><code>addrMatch</code></td>
+<td>string</td>
+<td>Não</td>
+<td><code>'Y'</code> se endereço de entrega igual ao de faturação</td>
+</tr>
+<tr>
+<td><code>workPhone</code></td>
+<td>array</td>
+<td>Não</td>
+<td>Telefone do trabalho <code>{ cc: "238", subscriber: "XXXXXXX" }</code></td>
+</tr>
+<tr>
+<td><code>mobilePhone</code></td>
+<td>array</td>
+<td>Não</td>
+<td>Telefone móvel <code>{ cc: "238", subscriber: "XXXXXXX" }</code></td>
+</tr>
+<tr>
+<td><code>acctID</code></td>
+<td>string</td>
+<td>Não</td>
+<td>id de conta / identificação do cliente</td>
+</tr>
+<tr>
+<td><code>acctInfo</code></td>
+<td>string</td>
+<td>Não</td>
+<td>Informação adicional docliente<br> <code>chAccAgeInd</code>, <code>chAccChange</code>, <code>chAccDate</code>,<br> <code>chAccPwChange</code>, <code>chAccPwChangeInd</code>, <code>suspiciousAccActivity</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Campos adicionais podem ser enviados conforme necessidade, todos opcionais.</p>
+</blockquote>
+<hr />
+<h2 id="metodos-diretos-de-pagamento">🔹 Métodos Diretos de Pagamento</h2>
+<h3 id="1-compra">1️⃣ Compra</h3>
+<pre><code class="language-php">public function createPurchaseForm(float|string $amount, string $responseUrl, array $billing, array $extras = []): string
+</code></pre>
+<h3 id="2-pagamento-de-servico">2️⃣ Pagamento de Serviço</h3>
+<pre><code class="language-php">public function createServicePaymentForm(float|string $amount, string $responseUrl, string $entityCode, string $referenceNumber, array $extras = []): string
+</code></pre>
+<h3 id="3-recarga">3️⃣ Recarga</h3>
+<pre><code class="language-php">public function createRechargeForm(float|string $amount, string $responseUrl, string $entityCode, string $referenceNumber, array $extras = []): string
+</code></pre>
+<blockquote>
+<p>Todos os métodos chamam internamente <code>preparePayment()</code> e retornam <strong>formulário HTML auto-submetido</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="exemplo-de-uso-compra">📝 Exemplo de Uso — Compra</h2>
+<pre><code class="language-php">use Erilshk\Vinti4Pay\Vinti4Pay;
+
+$vinti4 = new Vinti4Pay('90000443', 'SEU_AUTH_CODE');
+
+$billing = [
+    'billAddrCountry' =&gt; 'CV',
+    'billAddrCity'    =&gt; 'Praia',
+    'billAddrLine1'   =&gt; 'Rua Principal',
+    'billAddrPostCode'=&gt; '7600',
+    'email'           =&gt; 'cliente@exemplo.cv',
+    'addrMatch'       =&gt; 'Y'
+];
+
+echo $vinti4-&gt;createPurchaseForm(
+    1500,
+    'https://seusite.cv/vinti4/callback.php',
+    $billing
+);
+</code></pre>
+<hr />
+<h2 id="callback-response">🔹 Callback / Response</h2>
+<p>Quando o usuário finaliza o pagamento, o gateway envia <strong>POST</strong> para o <code>responseUrl</code>.</p>
+<h3 id="processando-o-callback">Processando o callback</h3>
+<pre><code class="language-php">$response = $vinti4-&gt;processResponse($_POST);
+
+if ($response['success']) {
+    // Pagamento aprovado
+    echo &quot;Transação aprovada!&quot;;
+} else {
+    // Erro ou cancelamento
+    echo &quot;Erro: &quot; . $response['message'];
+}
+</code></pre>
+<h3 id="estrutura-do-retorno-processresponse">Estrutura do Retorno (<code>processResponse</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>array</td>
+<td>Dados originais recebidos do gateway (é bom guardar)</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td><code>'SUCCESS'</code>, <code>'CANCELLED'</code>, <code>'INVALID_FINGERPRINT'</code>, <code>'ERROR'</code></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Mensagem legível sobre a transação</td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td>bool</td>
+<td><code>true</code> se transação aprovada (mesmo que fingerprint inválido)</td>
+</tr>
+<tr>
+<td><code>dcc</code></td>
+<td>array</td>
+<td>Informações DCC (se presentes)</td>
+</tr>
+<tr>
+<td><code>detail</code></td>
+<td>string</td>
+<td>Detalhe de erro (se presente)</td>
+</tr>
+<tr>
+<td><code>debug</code></td>
+<td>array</td>
+<td>Informações para debug de fingerprint (se inválida)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>O SDK valida automaticamente <strong>fingerprint</strong> e informa o status correto, inclusive em casos de cancelamento pelo usuário.</p>
+</blockquote>
+<h3 id="exemplo-com-vinti4result">Exemplo com Vinti4Result</h3>
+<pre><code class="language-php">use Erilshk\Vinti4Pay\Vinti4Pay;
+use Erilshk\Vinti4Pay\Vinti4Result;
+
+$vinti4 = new Vinti4Pay('91234567', 'SEU_AUTH_CODE');
+
+// Recebe e processa a resposta do gateway (normalmente $_POST)
+$response = $vinti4-&gt;processResponse($_POST);
+
+// instancia o Vinti4Result
+$result = new Vinti4Result($response);
+
+// Ações baseadas no status
+$result-&gt;onSuccessfulTransaction(function (Vinti4Result $r) {
+        echo &quot;&lt;h3&gt;✅ Pagamento aprovado!&lt;/h3&gt;&quot;;
+        echo $r-&gt;generateReceipt();
+});
+
+$result-&gt;-&gt;onCancelledTransaction(function (Vinti4Result $r) {
+        echo &quot;&lt;h3&gt;⚠️ Pagamento cancelado pelo utilizador.&lt;/h3&gt;&quot;;
+});
+
+$result-&gt;-&gt;onFailedTransaction(function (Vinti4Result $r) {
+        echo &quot;&lt;h3&gt;❌ Erro no pagamento:&lt;/h3&gt;&quot;;
+        echo &quot;&lt;p&gt;{$r-&gt;message}&lt;/p&gt;&quot;;
+});
+
+</code></pre>
+<hr />
+<h2 id="observacoes-tecnicas">⚠️ Observações Técnicas</h2>
+<ol>
+<li>Campos obrigatórios de <code>billing</code> são validados; falta algum campo gera <code>\InvalidArgumentException</code>.</li>
+<li><code>amount</code> é convertido internamente para <strong>milles</strong> (multiplicado por 1000).</li>
+<li><code>purchaseRequest</code> é gerado em <strong>JSON Base64</strong> para 3DS.</li>
+<li><code>preparePayment()</code> centraliza todos os tipos de pagamento; Use para mais controle na sua requisição e depois <code>generateHtmlForm()</code> para rednerizar o formulario.</li>
+<li>Qualquer falha no encode JSON de <code>purchaseRequest</code> gera <code>\Exception</code>.</li>
+<li>Para projetos sem Composer, use <code>dist/Vinti4Pay.php</code>.</li>
+</ol>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../exemplos/" class="btn btn-neutral float-left" title="Exemplos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/erilshackle/vinti4pay-php" class="fa fa-code-fork" style="color: #fcfcfc"> erilshk/vinti4pay-php</a>
+        </span>
+    
+    
+      <span><a href="../exemplos/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

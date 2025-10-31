@@ -2,147 +2,106 @@
 
 use PHPUnit\Framework\TestCase;
 use Erilshk\Vinti4Pay\Vinti4Pay;
+use Erilshk\Vinti4Pay\Vinti4Refund;
+use Erilshk\Vinti4Pay\Vinti4Result;
 
 class Vinti4PayTest extends TestCase
 {
-    protected Vinti4Pay $client;
+    private Vinti4Pay $vinti4;
+    private Vinti4Refund $refund;
 
     protected function setUp(): void
     {
-        $this->client = new Vinti4Pay('90000443', 'SECRET123');
+        $posID = '90000443';
+        $posAuthCode = 'SEGREDO123';
+
+        $this->vinti4 = new Vinti4Pay($posID, $posAuthCode, 'https://sandbox.vinti4net.cv/test');
+        $this->refund = new Vinti4Refund($posID, $posAuthCode, 'https://sandbox.vinti4net.cv/test');
     }
 
-    public function testCanInstantiateVinti4Pay(): void
+    public function testPreparePaymentReturnsArray(): void
     {
-        $this->assertInstanceOf(Vinti4Pay::class, $this->client);
+        $billing = [
+            'billAddrCountry' => 'CV',
+            'billAddrCity' => 'Praia',
+            'billAddrLine1' => 'Rua da Paz, 123',
+            'billAddrPostCode' => '7600',
+            'email' => 'cliente@example.com'
+        ];
+
+        $result = $this->vinti4->preparePayment(1000, 'https://meusite.com/callback.php', [
+            'billing' => $billing
+        ]);
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('postUrl', $result);
+        $this->assertArrayHasKey('fields', $result);
+        $this->assertArrayHasKey('fingerprint', $result['fields']);
     }
 
-    public function testCreateServicePaymentReturnsPaymentRequest(): void
+    public function testGenerateHtmlFormContainsInputFields(): void
     {
-        $req = $this->client->createServicePaymentForm(
-            1000,
-            'https://meusite.com/callback',
-            '12345',
-            '67890'
+        $billing = [
+            'billAddrCountry' => 'CV',
+            'billAddrCity' => 'Praia',
+            'billAddrLine1' => 'Rua da Paz, 123',
+            'billAddrPostCode' => '7600',
+            'email' => 'cliente@example.com'
+        ];
+
+        $paymentData = $this->vinti4->preparePayment(1000, 'https://meusite.com/callback.php', [
+            'billing' => $billing
+        ]);
+
+        $htmlForm = $this->vinti4->generateHtmlForm($paymentData);
+
+        $this->assertStringContainsString('<form', $htmlForm);
+        $this->assertStringContainsString('input type=\'hidden\'', $htmlForm);
+        $this->assertStringContainsString(htmlspecialchars($paymentData['fields']['fingerprint']), $htmlForm);
+    }
+
+    public function testProcessResponseSuccess(): void
+    {
+        $postData = [
+            'messageType' => '8',
+            'resultFingerPrint' => '',
+            'merchantRespMerchantRef' => 'R123',
+            'merchantRespMerchantSession' => 'S123',
+            'merchantRespPurchaseAmount' => '1000',
+            'merchantRespPurchaseCurrency' => '132',
+            'merchantRespTimeStamp' => date('Y-m-d H:i:s'),
+        ];
+
+        // Calcula fingerprint correta
+        $postData['resultFingerPrint'] = $this->invokePrivateMethod($this->vinti4, 'generateResponseFingerprint', [$postData]);
+
+        $resultArray = $this->vinti4->processResponse($postData);
+        $result = new Vinti4Result($resultArray);
+
+        $this->assertTrue($result->isSuccessful);
+        $this->assertEquals('SUCCESS', $result->status);
+    }
+
+    public function testPrepareRefundReturnsArray(): void
+    {
+        $refundData = $this->refund->prepareRefund(
+            'R123', 'S123', 1000, '1', 'T123', 'https://meusite.com/refund-callback.php'
         );
+
+        $this->assertIsArray($refundData);
+        $this->assertArrayHasKey('postUrl', $refundData);
+        $this->assertArrayHasKey('fields', $refundData);
+        $this->assertArrayHasKey('fingerPrint6', $refundData['fields']);
     }
 
-
-    public function testGeneratePurchaseRequestThrowsExceptionForMissingFields(): void
+    /**
+     * Helper para invocar métodos privados
+     */
+    private function invokePrivateMethod(object $object, string $methodName, array $args = [])
     {
-        $this->expectException(\Erilshk\Vinti4Net\Exception\ValidationException::class);
-
-        $method = new ReflectionMethod(Vinti4Pay::class, 'generatePurchaseRequest');
+        $reflection = new ReflectionClass($object);
+        $method = $reflection->getMethod($methodName);
         $method->setAccessible(true);
-        $method->invoke($this->client, ['email' => 'teste@exemplo.com']); // faltando campos
-    }
-
-
-    // ============================================================
-    // TESTE: FINGERPRINT DE ENVIO (REQUEST)
-    // ============================================================
-    public function testGenerateRequestFingerPrintProducesExpectedBase64(): void
-    {
-        // usa Reflection para acessar o método protegido
-        $method = new ReflectionMethod(Vinti4Pay::class, 'generateRequestFingerPrint');
-        $method->setAccessible(true);
-
-        $data = [
-            'timeStamp'        => '2025-10-28 12:00:00',
-            'amount'           => 100.00, // CVE
-            'merchantRef'      => 'R12345',
-            'merchantSession'  => 'S67890',
-            'posID'            => '90000443',
-            'currency'         => '132',
-            'transactionCode'  => '2',
-            'entityCode'       => '123',
-            'referenceNumber'  => '456',
-        ];
-
-        // executa o método
-        $fingerprint = $method->invoke($this->client, $data);
-
-        // deve retornar uma string base64 válida
-        $this->assertNotEmpty($fingerprint);
-        $this->assertMatchesRegularExpression('/^[A-Za-z0-9+\/=]+$/', $fingerprint);
-
-        // verifica consistência (mesmos dados → mesmo hash)
-        $fingerprint2 = $method->invoke($this->client, $data);
-        $this->assertSame($fingerprint, $fingerprint2);
-
-        // altera algo para garantir que muda
-        $data['amount'] = 101.00;
-        $fingerprint3 = $method->invoke($this->client, $data);
-        $this->assertNotSame($fingerprint, $fingerprint3);
-    }
-
-    // ============================================================
-    // TESTE: FINGERPRINT DE RESPOSTA (RESPONSE)
-    // ============================================================
-    public function testGenerateSuccessfulResponseFingerPrintProducesExpectedBase64(): void
-    {
-        $method = new ReflectionMethod(Vinti4Pay::class, 'generateSuccessfulResponseFingerPrint');
-        $method->setAccessible(true);
-
-        $data = [
-            'messageType'                    => '8',
-            'merchantRespCP'                 => '90000443',
-            'merchantRespTid'                => 'TST123',
-            'merchantRespMerchantRef'        => 'R12345',
-            'merchantRespMerchantSession'    => 'S67890',
-            'merchantRespPurchaseAmount'     => '100.00',
-            'merchantRespMessageID'          => 'MSG01',
-            'merchantRespPan'                => '411111******1111',
-            'merchantResp'                   => 'C',
-            'merchantRespTimeStamp'          => '2025-10-28 12:05:00',
-            'merchantRespReferenceNumber'    => '456',
-            'merchantRespEntityCode'         => '123',
-            'merchantRespClientReceipt'      => 'OK',
-            'merchantRespAdditionalErrorMessage' => '',
-            'merchantRespReloadCode'         => '',
-        ];
-
-        $fingerprint = $method->invoke($this->client, $data);
-
-        $this->assertNotEmpty($fingerprint);
-        $this->assertMatchesRegularExpression('/^[A-Za-z0-9+\/=]+$/', $fingerprint);
-
-        // deve ser determinístico
-        $fingerprint2 = $method->invoke($this->client, $data);
-        $this->assertSame($fingerprint, $fingerprint2);
-
-        // se mudar algo, o hash deve mudar
-        $data['merchantRespPan'] = '400000******0000';
-        $fingerprint3 = $method->invoke($this->client, $data);
-        $this->assertNotSame($fingerprint, $fingerprint3);
-    }
-
-    // ============================================================
-    // TESTE: DIFERENTES CHAVES SECRETAS GERAM FINGERPRINT DIFERENTE
-    // ============================================================
-    public function testDifferentPosAutCodeProducesDifferentFingerPrint(): void
-    {
-        $method = new ReflectionMethod(Vinti4Pay::class, 'generateRequestFingerPrint');
-        $method->setAccessible(true);
-
-        $data = [
-            'timeStamp'        => '2025-10-28 12:00:00',
-            'amount'           => 50.00,
-            'merchantRef'      => 'R111',
-            'merchantSession'  => 'S222',
-            'posID'            => '90000443',
-            'currency'         => '132',
-            'transactionCode'  => '2',
-            'entityCode'       => '111',
-            'referenceNumber'  => '222',
-        ];
-
-        $client1 = new Vinti4Pay('90000443', 'SECRET123');
-        $client2 = new Vinti4Pay('90000443', 'OTHERSECRET');
-
-        $f1 = $method->invoke($client1, $data);
-        $f2 = $method->invoke($client2, $data);
-
-        $this->assertNotSame($f1, $f2);
+        return $method->invokeArgs($object, $args);
     }
 }

@@ -1,462 +1,192 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Documentação oficial do SDK Vinti4Net PHP">
-        <meta name="author" content="Eril TS Carvalho">
-        
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Vinti4Net PHP SDK</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/fontawesome.min.css" rel="stylesheet">
-        <link href="css/brands.min.css" rel="stylesheet">
-        <link href="css/solid.min.css" rel="stylesheet">
-        <link href="css/v4-font-face.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
-
-    <body class="homepage">
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href=".">Vinti4Net PHP SDK</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="installation/" class="nav-link">Instalação</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="compra/" class="nav-link">Compra</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pagamento-servico/" class="nav-link">Serviço</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="recarga/" class="nav-link">Recarga</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="callback/" class="nav-link">Callback</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Classes</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="classes/payment-client/" class="dropdown-item">PaymentClient</a>
-</li>
-                                    
-<li>
-    <a href="classes/payment-request/" class="dropdown-item">PaymentRequest</a>
-</li>
-                                    
-<li>
-    <a href="classes/payment-result/" class="dropdown-item">PaymentResult</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="example/" class="nav-link">exemplo</a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="installation/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="SDK oficial para integração de pagamentos com o Vinti4Net (SISP) em PHP" /><meta name="author" content="Eril TS Carvalho" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Vinti4Pay PHP SDK</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-bs-level="1"><a href="#vinti4net-php-sdk-documentation" class="nav-link">📝 Vinti4Net PHP SDK Documentation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#sumario" class="nav-link">Sumário</a>
-              <ul class="nav flex-column">
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Vinti4Pay PHP SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#recursos-principais">⚙️ Recursos principais</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comece-agora">🚀 Comece agora</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#estrutura-da-documentacao">📚 Estrutura da documentação</a>
+    </li>
+    </ul>
+                </li>
               </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#introducao" class="nav-link">Introdução</a>
-              <ul class="nav flex-column">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="installation/">Instalação e Uso</a>
+                </li>
               </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#instalacao" class="nav-link">Instalação</a>
-              <ul class="nav flex-column">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="payments/">Pagamentos</a>
+                </li>
               </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#conceitos-principais" class="nav-link">Conceitos Principais</a>
-              <ul class="nav flex-column">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="callback/">Callback / Retorno</a>
+                </li>
               </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#configuracao-e-inicializacao" class="nav-link">Configuração e Inicialização</a>
-              <ul class="nav flex-column">
+              <ul>
+                <li class="toctree-l1"><a class="" href="refund.md">Estorno (Refund)</a>
+                </li>
               </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#criando-pagamentos" class="nav-link">Criando Pagamentos</a>
-              <ul class="nav flex-column">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="exemplos/">Exemplos</a>
+                </li>
               </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#processando-callbackresposta" class="nav-link">Processando Callback/Resposta</a>
-              <ul class="nav flex-column">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="vinti4pay/">Referência</a>
+                </li>
               </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-erros-e-excecoes" class="nav-link">Tratamento de Erros e Exceções</a>
-              <ul class="nav flex-column">
+              <ul>
+                <li class="toctree-l1"><a class="" href="about.md">Sobre</a>
+                </li>
               </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#classes-e-metodos" class="nav-link">Classes e Métodos</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#contribuicao" class="nav-link">Contribuição</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#licenca" class="nav-link">Licença</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
+      </div>
     </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+    </nav>
 
-<h1 id="vinti4net-php-sdk-documentation">📝 Vinti4Net PHP SDK Documentation</h1>
-<h2 id="sumario">Sumário</h2>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Vinti4Pay PHP SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/erilshackle/vinti4pay-php/edit/master/docs/index.md">Edit on erilshk/vinti4pay-php</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="vinti4pay-php-sdk">💳 Vinti4Pay PHP SDK</h1>
+<p>Bem-vindo à documentação oficial do <strong>Vinti4Pay PHP SDK</strong>, uma biblioteca moderna e orientada a objetos para integração com o <strong>gateway Vinti4Net (SISP)</strong>, permitindo pagamentos online, recargas, estornos e consultas de forma simples e segura.</p>
+<hr />
+<h2 id="recursos-principais">⚙️ Recursos principais</h2>
 <ul>
-<li><a href="#-vinti4net-php-sdk-documentation">📝 Vinti4Net PHP SDK Documentation</a></li>
-<li><a href="#sumário">Sumário</a></li>
-<li><a href="#introdução">Introdução</a></li>
-<li><a href="#instalação">Instalação</a></li>
-<li><a href="#conceitos-principais">Conceitos Principais</a></li>
-<li><a href="#configuração-e-inicialização">Configuração e Inicialização</a></li>
-<li><a href="#criando-pagamentos">Criando Pagamentos</a><ul>
-<li><a href="#compra-transactioncode1">Compra (TransactionCode='1')</a></li>
-<li><a href="#pagamento-de-serviço-transactioncode2">Pagamento de Serviço (TransactionCode='2')</a></li>
-<li><a href="#recarga-transactioncode3">Recarga (TransactionCode='3')</a></li>
-</ul>
-</li>
-<li><a href="#processando-callbackresposta">Processando Callback/Resposta</a></li>
-<li><a href="#tratamento-de-erros-e-exceções">Tratamento de Erros e Exceções</a></li>
-<li><a href="#classes-e-métodos">Classes e Métodos</a><ul>
-<li><a href="#paymentclient">PaymentClient</a></li>
-<li><a href="#paymentrequest">PaymentRequest</a></li>
-<li><a href="#paymentresult">PaymentResult</a></li>
-</ul>
-</li>
-<li><a href="#contribuição">Contribuição</a></li>
-<li><a href="#licença">Licença</a></li>
+<li>💰 Pagamentos por <strong>cartão Vinti4</strong></li>
+<li>🔁 <strong>Estornos (Refund/Reversal)</strong></li>
+<li>🧾 Geração de <strong>recibos HTML</strong></li>
+<li>🧩 Verificação automática de <strong>fingerprint</strong></li>
+<li>📦 Baseado em <strong>PHP 8+</strong></li>
+<li>🧠 Código limpo e documentado</li>
 </ul>
 <hr />
-<h2 id="introducao">Introdução</h2>
-<p>O <strong>Vinti4Net PHP SDK</strong> fornece uma integração segura com o <strong>Vinti4Net Payment Gateway</strong>, encapsulando toda a lógica de:</p>
-<ul>
-<li>Fingerprint Request &amp; Response</li>
-<li>PurchaseRequest 3DS</li>
-<li>Validação de Callback</li>
-</ul>
-<p>O SDK é compatível com <strong>PHP 8.1+</strong> e foi desenvolvido para simplificar fluxos de pagamento em aplicativos PHP.</p>
-<hr />
-<h2 id="instalacao">Instalação</h2>
-<pre><code class="language-bash">composer require erilshk/vinti4net-payment
-</code></pre>
-<hr />
-<h2 id="conceitos-principais">Conceitos Principais</h2>
-<table>
-<thead>
-<tr>
-<th>Conceito</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>PaymentClient</strong></td>
-<td>Classe principal que gerencia todas as transações.</td>
-</tr>
-<tr>
-<td><strong>PaymentRequest</strong></td>
-<td>DTO que representa uma requisição de pagamento (amount, billing, etc).</td>
-</tr>
-<tr>
-<td><strong>PaymentResult</strong></td>
-<td>Resultado da transação, incluindo status, mensagem e dados do callback.</td>
-</tr>
-<tr>
-<td><strong>FingerPrint</strong></td>
-<td>Token de segurança calculado para Request e Response.</td>
-</tr>
-<tr>
-<td><strong>PurchaseRequest</strong></td>
-<td>Payload de 3DS para validação de compras.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="configuracao-e-inicializacao">Configuração e Inicialização</h2>
-<pre><code class="language-php">use Erilshk\Vinti4Net\PaymentClient;
-
-$client = new PaymentClient('VINTI4_POS_ID', 'VINTI4_POS_AUTCODE');
-// Ambiente de teste (opcional)
-$client_test = new PaymentClient('VINTI4_POS_ID', 'VINTI4_POS_AUTCODE', 'https://3dsteste.vinti4net.cv/endpoint.php');
-</code></pre>
-<hr />
-<h2 id="criando-pagamentos">Criando Pagamentos</h2>
-<h3 id="compra-transactioncode1">Compra (TransactionCode='1')</h3>
-<pre><code class="language-php">$request = $client-&gt;createPurchasePayment(1500.00, 'https://seuapp.cv/callback-vinti4', [
-    'user' =&gt; [
-        'email' =&gt; 'cliente@exemplo.com',
-        'country' =&gt; '132',
-        'city' =&gt; 'Praia',
-        'address' =&gt; 'Av. Cidade de Lisboa, 12',
-        'postalCode' =&gt; '7600'
-    ]
-]);
-
-echo $client-&gt;renderPaymentForm($request);
-exit;
-</code></pre>
-<h3 id="pagamento-de-servico-transactioncode2">Pagamento de Serviço (TransactionCode='2')</h3>
-<pre><code class="language-php">$serviceRequest = $client-&gt;createServicePayment(
-    500.00,
-    'https://seuapp.cv/callback-vinti4',
-    'FAT123',     // entityCode
-    '123456789'   // reference
-);
-
-echo $client-&gt;renderPaymentForm($serviceRequest);
-exit;
-</code></pre>
-<h3 id="recarga-transactioncode3">Recarga (TransactionCode='3')</h3>
-<pre><code class="language-php">$rechargeRequest = $client-&gt;createRechargePayment(
-    200.00,
-    'https://seuapp.cv/callback-vinti4',
-    'OP123',  // entityCode
-    '9876545'  // referenceNumber
-);
-
-echo $client-&gt;renderPaymentForm($rechargeRequest);
-exit;
-</code></pre>
-<hr />
-<h2 id="processando-callbackresposta">Processando Callback/Resposta</h2>
-<pre><code class="language-php">$result = $client-&gt;processResponse($_POST);
-
-if ($result-&gt;succeeded()) {
-    echo &quot;Pagamento aprovado: &quot; . $result-&gt;data['merchantRespMerchantRef'];
-    echo $result-&gt;generateReceipt();
-} elseif ($result-&gt;status === $result::STATUS_FINGERPRINT_INVALID) {
-    error_log(&quot;Falha de segurança: &quot; . $result-&gt;message);
-} else {
-    echo &quot;Pagamento falhou ou cancelado. Status: {$result-&gt;status}&quot;;
-}
-</code></pre>
-<hr />
-<h2 id="tratamento-de-erros-e-excecoes">Tratamento de Erros e Exceções</h2>
-<table>
-<thead>
-<tr>
-<th>Exceção</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ValidationException</code></td>
-<td>Campos obrigatórios ausentes ou incorretos.</td>
-</tr>
-<tr>
-<td><code>PaymentException</code></td>
-<td>Erros internos do SDK.</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-php">try {
-    echo $client-&gt;renderPaymentForm($request);
-} catch (ValidationException $e) {
-    echo &quot;Erro de validação: &quot; . $e-&gt;getMessage();
-} catch (\Exception $e) {
-    echo &quot;Erro inesperado: &quot; . $e-&gt;getMessage();
-}
-</code></pre>
-<hr />
-<h2 id="classes-e-metodos">Classes e Métodos</h2>
-<h3 id="paymentclient">PaymentClient</h3>
-<table>
-<thead>
-<tr>
-<th>Método</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>createPurchasePayment()</code></td>
-<td>Cria requisição de compra (3DS obrigatório).</td>
-</tr>
-<tr>
-<td><code>createServicePayment()</code></td>
-<td>Cria requisição de pagamento de serviço.</td>
-</tr>
-<tr>
-<td><code>createRechargePayment()</code></td>
-<td>Cria requisição de recarga de telemóvel.</td>
-</tr>
-<tr>
-<td><code>renderPaymentForm()</code></td>
-<td>Retorna formulário HTML auto-submissível.</td>
-</tr>
-<tr>
-<td><code>processResponse()</code></td>
-<td>Valida callback e retorna PaymentResult.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="paymentrequest">PaymentRequest</h3>
-<ul>
-<li><code>merchantRef</code></li>
-<li><code>merchantSession</code></li>
-<li><code>merchantSession</code></li>
-<li><code>setBilling(array $billingData)</code></li>
-</ul>
-<h3 id="paymentresult">PaymentResult</h3>
-<ul>
-<li><code>succeeded(): bool</code></li>
-<li><code>generateReceipt(): string</code></li>
-<li><code>status</code></li>
-<li><code>message</code></li>
-<li><code>data</code></li>
-</ul>
-<hr />
-<h2 id="contribuicao">Contribuição</h2>
+<h2 id="comece-agora">🚀 Comece agora</h2>
 <ol>
-<li>Abra uma <strong>Issue</strong>.</li>
-<li>Faça um <strong>Fork</strong> do projeto.</li>
-<li>Envie um <strong>Pull Request</strong> testado.</li>
+<li>Instale o pacote com o Composer.</li>
+<li>Configure o seu <strong>POS ID</strong> e <strong>POS Auth Code</strong>.</li>
+<li>Crie o formulário de pagamento.</li>
+<li>Receba e valide o retorno (callback).</li>
 </ol>
 <hr />
-<h2 id="licenca">Licença</h2>
-<p>MIT License – livre para uso em qualquer projeto.</p></div>
+<h2 id="estrutura-da-documentacao">📚 Estrutura da documentação</h2>
+<ul>
+<li><a href="installation/">Instalação e Uso</a></li>
+<li><a href="compra/">Compra (Pagamento de Produtos)</a></li>
+<li><a href="pagamento-servico.md">Pagamento de Serviço</a></li>
+<li><a href="recarga.md">Recarga</a></li>
+<li><a href="callback/">Callback / Retorno</a></li>
+<li><a href="refund.md">Estorno (Refund)</a></li>
+<li><a href="result.md">Resultados (Vinti4Result)</a></li>
+<li><a href="exemplos/">Exemplos completos</a></li>
+<li><a href="about.md">Sobre o projeto</a></li>
+</ul>
+              
             </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script>
-            var base_url = ".",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="js/base.js"></script>
-        <script src="search/main.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="installation/" class="btn btn-neutral float-right" title="Instalação e Uso">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
         </div>
-    </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/erilshackle/vinti4pay-php" class="fa fa-code-fork" style="color: #fcfcfc"> erilshk/vinti4pay-php</a>
+        </span>
+    
+    
+    
+      <span><a href="installation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
 
-    </body>
+</body>
 </html>
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-10-29 20:38:21.277476+00:00
+Build Date UTC : 2025-10-31 03:53:21.446763+00:00
 -->

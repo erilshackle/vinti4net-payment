@@ -55,13 +55,13 @@ class Vinti4Pay
      * Vinti4Pay constructor.
      *
      * @param string $posID Point of Sale ID
-     * @param string $posAuthCode Secret Authorization Code
+     * @param string $posAutCode Secret Authorization Code
      * @param string|null $endpoint Optional endpoint URL (defaults to production)
      */
-    public function __construct(string $posID, string $posAuthCode, ?string $endpoint = null)
+    public function __construct(string $posID, string $posAutCode, ?string $endpoint = null)
     {
         $this->posID = $posID;
-        $this->posAuthCode = $posAuthCode;
+        $this->posAuthCode = $posAutCode;
         $this->baseUrl = $endpoint ?? self::DEFAULT_BASE_URL;
     }
 

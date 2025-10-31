@@ -1,274 +1,296 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <meta name="author" content="Eril TS Carvalho">
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Instalação - Vinti4Net PHP SDK</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../css/brands.min.css" rel="stylesheet">
-        <link href="../css/solid.min.css" rel="stylesheet">
-        <link href="../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">Vinti4Net PHP SDK</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./" class="nav-link active" aria-current="page">Instalação</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../compra/" class="nav-link">Compra</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../pagamento-servico/" class="nav-link">Serviço</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../recarga/" class="nav-link">Recarga</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../callback/" class="nav-link">Callback</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Classes</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../classes/payment-client/" class="dropdown-item">PaymentClient</a>
-</li>
-                                    
-<li>
-    <a href="../classes/payment-request/" class="dropdown-item">PaymentRequest</a>
-</li>
-                                    
-<li>
-    <a href="../classes/payment-result/" class="dropdown-item">PaymentResult</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../example/" class="nav-link">exemplo</a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../compra/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Eril TS Carvalho" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Instalação e Uso - Vinti4Pay PHP SDK</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-bs-level="1"><a href="#inicializacao-do-vinti4net-php-sdk" class="nav-link">🚀 Inicialização do Vinti4Net PHP SDK</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#1-requisitos-e-instalacao" class="nav-link">1️⃣ Requisitos e Instalação</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#2-criando-o-client" class="nav-link">2️⃣ Criando o Client</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#3-criacao-de-uma-transacao" class="nav-link">3️⃣ Criação de uma transação</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#4-proximos-passos" class="nav-link">4️⃣ Próximos passos</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Instala\u00e7\u00e3o e Uso";
+        var mkdocs_page_input_path = "installation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
 
-<h1 id="inicializacao-do-vinti4net-php-sdk">🚀 Inicialização do Vinti4Net PHP SDK</h1>
-<p>Esta página mostra como <strong>inicializar rapidamente</strong> o SDK e preparar o cliente para uso.</p>
-<hr />
-<h2 id="1-requisitos-e-instalacao">1️⃣ Requisitos e Instalação</h2>
-<ul>
-<li>PHP &gt;= 8.1</li>
-<li>Composer instalado</li>
-</ul>
-<p>Instale via Composer:</p>
-<pre><code class="language-bash">composer require erilshk/vinti4net-payment
-</code></pre>
-<h2 id="2-criando-o-client">2️⃣ Criando o Client</h2>
-<pre><code class="language-php">&lt;?php
+<body class="wy-body-for-nav" role="document">
 
-require 'vendor/autoload.php';
-
-use Erilshk\Vinti4Net\PaymentClient;
-
-// Substitua pelas suas credenciais reais
-$posID = 'SEU_POS_ID';
-$posAutCode = 'SEU_POS_AUT_CODE_SECRETO';
-
-$client = new PaymentClient($posID, $posAutCode);
-
-// Opcional: URL de teste (Staging)
-// $client = new PaymentClient($posID, $posAutCode, 'https://staging.vinti4net.cv/');
-</code></pre>
-<h2 id="3-criacao-de-uma-transacao">3️⃣ Criação de uma transação</h2>
-<pre><code class="language-php">use Erilshk\Vinti4Net\PaymentRequest;
-
-// Criar o objeto de requisição
-// transitionCode = 1 - compra
-// transitionCode = 2 - pagamento de serviço
-// transitionCode = 3 - recarga
-$request = new PaymentRequest(amount: 150, responseUrl: 'https://seuapp.cv/processar-vinti4-callback', transactionCode: 1);
-
-/**
- *? É muito recomendado criar a instancia de PaymentRequest por meio da classe PaymentClient
- * $client = new PaymentClient('VINTI4_POS_ID', 'VINTI4_POS_AUTCODE'); 
- **/
-
-// Adicionar dados de billing (obrigatório para 3DS)
-$request-&gt;setBilling(
-    email: 'cliente@exemplo.com',
-    country: '132',       // Código do país CV
-    city: 'Praia',
-    address: 'Av. Cidade de Lisboa, 12',
-    postalCode: '7600'
-);
-
-// Renderizar formulário e redirecionar
-echo $client-&gt;renderPaymentForm($request);
-exit;
-</code></pre>
-<hr />
-<h2 id="4-proximos-passos">4️⃣ Próximos passos</h2>
-<ul>
-<li>Configurar <strong>callback URL</strong> para processar a resposta do Vinti4Net.</li>
-<li>Criar páginas para <strong>Serviço</strong> e <strong>Recarga</strong>.</li>
-<li>Consultar seções de <strong>Tratamento de Erros</strong> e <strong>Exceções</strong>.</li>
-</ul></div>
-            </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="../js/bootstrap.bundle.min.js"></script>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js"></script>
-        <script src="../search/main.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Vinti4Pay PHP SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
 </div>
+      </div>
 
-    </body>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Instalação e Uso</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#requisitos-do-sistema">🧰 Requisitos do Sistema</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instalacao-via-composer-recomendada">💎 Instalação via Composer (recomendada)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#formularios-disponiveis">Formulários Disponíveis</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#uso-sem-composer-versao-em-portugues">📦 Uso sem Composer (versão em português)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#inclusao-manual">Inclusão manual:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#download-direto">📥 Download direto</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#teste-em-ambiente-local">🧪 Teste em Ambiente Local</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#proximos-passos">🔧 Próximos Passos</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../payments/">Pagamentos</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../callback/">Callback / Retorno</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../refund.md">Estorno (Refund)</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../exemplos/">Exemplos</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vinti4pay/">Referência</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../about.md">Sobre</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Vinti4Pay PHP SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Instalação e Uso</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/erilshackle/vinti4pay-php/edit/master/docs/installation.md">Edit on erilshk/vinti4pay-php</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="instalacao-do-vinti4pay-php-sdk">⚙️ Instalação do Vinti4Pay PHP SDK</h1>
+<p>Esta documentação descreve como instalar e configurar o SDK oficial <strong>Vinti4Pay PHP</strong> para integração com o sistema de pagamentos <strong>Vinti4Net (SISP Cabo Verde)</strong>.</p>
+<hr />
+<h2 id="requisitos-do-sistema">🧰 Requisitos do Sistema</h2>
+<table>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>Detalhes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PHP</td>
+<td>&gt;= 8.0</td>
+</tr>
+<tr>
+<td><strong>Extensões</strong></td>
+<td><code>curl</code>, <code>json</code>, <code>mbstring</code>, <code>openssl</code></td>
+</tr>
+<tr>
+<td>Acesso HTTPS</td>
+<td>Necessário para o endpoint de pagamento da SISP</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="instalacao-via-composer-recomendada">💎 Instalação via Composer (recomendada)</h2>
+<p>O método recomendado para projetos modernos é instalar via <strong>Composer</strong>, que oferece autoload e gerenciamento de dependências.</p>
+<pre><code class="language-bash">composer require erilshk/vinti4pay-php
+</code></pre>
+<p>Após a instalação:</p>
+<pre><code class="language-php">use Erilshk\Vinti4Pay\Vinti4Pay;
+
+// Instanciar o SDK com POS ID e Auth Code
+$vinti4 = new Vinti4Pay(posId:'90000443', posAutCode: 'SEU_AUTH_CODE');
+
+// para testes use o paramtro endpoint:
+$vinti4 = new Vinti4Pay(posId:'90000443', posAutCode: 'SEU_AUTH_CODE', endpoint: 'https://teste.vinti4net.cv/endpoint...');
+</code></pre>
+<h3 id="formularios-disponiveis">Formulários Disponíveis</h3>
+<p>O SDK fornece métodos diretos para gerar formulários HTML de pagamento com submissão automática:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Tipo de Transação</th>
+<th>Observações</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createPurchaseForm()</code></td>
+<td><em>1</em> Compra</td>
+<td>Requer dados de purchaseRequest (<code>billing</code>)</td>
+</tr>
+<tr>
+<td><code>createServicePaymentForm()</code></td>
+<td><em>2</em> Pagamento de Serviço</td>
+<td>Requer <code>entityCode</code> e <code>referenceNumber</code></td>
+</tr>
+<tr>
+<td><code>createRechargeForm()</code></td>
+<td><em>3</em> Recarga</td>
+<td>Requer <code>entityCode</code> e <code>referenceNumber</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Todos os métodos retornam <strong>HTML pronto para submissão automática</strong>. O desenvolvedor não precisa manipular arrays de campos manualmente. Para informar parametros extras, deve-se usar o ultimo parametro desses metodos</p>
+</blockquote>
+<hr />
+<h2 id="uso-sem-composer-versao-em-portugues">📦 Uso sem Composer (versão em português)</h2>
+<p>Para projetos sem Composer, disponibilizamos os arquivos <strong>independentes</strong> na pasta <code>dist/</code>:</p>
+<ul>
+<li><code>Vinti4Pay.php</code> — classe principal</li>
+<li><code>Vinti4Refund.php</code> — classe de estornos/refunds</li>
+</ul>
+<blockquote>
+<p><strong>Nota:</strong> Esta versão está em português e mantém os mesmos métodos (<code>createPurchaseForm()</code>, <code>createServicePaymentForm()</code>, <code>createRechargeForm()</code>) com funcionamento direto.</p>
+</blockquote>
+<h3 id="inclusao-manual">Inclusão manual:</h3>
+<pre><code class="language-php">require 'dist/Vinti4Pay.php';
+// require 'dist/Vinti4Refund.php';
+
+$vinti4 = new Vinti4Pay('90000443', 'SEU_AUTH_CODE');
+
+// Exemplo: criar formulário de compra
+echo $vinti4-&gt;createPurchaseForm(
+    amount: 1500, 
+    responseUrl: 'https://seusite.cv/vinti4/callback.php', 
+    billing: [
+        'billAddrCountry' =&gt; 'CV',
+        'billAddrCity'    =&gt; 'Praia',
+        'billAddrLine1'   =&gt; 'Rua Principal',
+        'billAddrPostCode'=&gt; '7600',
+        'email'           =&gt; 'cliente@exemplo.cv'
+    ]
+);
+</code></pre>
+<h3 id="download-direto">📥 Download direto</h3>
+<p>Os arquivos podem ser obtidos no repositório oficial:</p>
+<p>➡️ <a href="https://github.com/erilshackle/vinti4pay-php/tree/main/dist">Versão independente em português (dist)</a></p>
+<hr />
+<h2 id="teste-em-ambiente-local">🧪 Teste em Ambiente Local</h2>
+<p>É possível executar rapidamente um servidor PHP para testes:</p>
+<pre><code class="language-bash">php -S localhost:8080 -t public
+</code></pre>
+<p>Configure o callback da SISP apontando para o seu endpoint local ou público:</p>
+<pre><code>https://seusite.cv/vinti4/callback.php
+</code></pre>
+<p>No callback, utilize os métodos:</p>
+<ul>
+<li><code>processResponse($_POST)</code> → valida e processa respostas de pagamentos</li>
+<li><code>processRefundResponse($_POST)</code> → valida e processa respostas de estornos</li>
+</ul>
+<hr />
+<h2 id="proximos-passos">🔧 Próximos Passos</h2>
+<p>Após a instalação, consulte as páginas de exemplos para cada tipo de transação:</p>
+<ul>
+<li><a href="../compra/">Compra →</a></li>
+<li><a href="pagamento-servico.md">Pagamento de Serviço →</a></li>
+<li><a href="recarga.md">Recarga →</a></li>
+<li><a href="../callback/">Callback / Retorno →</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../payments/" class="btn btn-neutral float-right" title="Pagamentos">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/erilshackle/vinti4pay-php" class="fa fa-code-fork" style="color: #fcfcfc"> erilshk/vinti4pay-php</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../payments/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
 </html>

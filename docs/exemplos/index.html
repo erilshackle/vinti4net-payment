@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Eril TS Carvalho" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exemplos - Vinti4Pay PHP SDK</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exemplos";
+        var mkdocs_page_input_path = "exemplos.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Vinti4Pay PHP SDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Instalação e Uso</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../payments/">Pagamentos</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../callback/">Callback / Retorno</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../refund.md">Estorno (Refund)</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Exemplos</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-estrutura-basica-de-arquivos">⚙️ 1. Estrutura Básica de Arquivos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-configuracao">🔐 2. Configuração</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-checkout-e-redirecionamento-vinti4php">💳 3. Checkout e Redirecionamento (vinti4.php)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-endpoint-de-callback-callbackphp">🔁 4. Endpoint de Callback (callback.php)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-fluxo-de-execucao">📜 5. Fluxo de Execução</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-estrutura-de-dados-recebida-callback">🧩 6. Estrutura de Dados Recebida (Callback)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7-procedimento-de-teste-local">🧪 7. Procedimento de Teste Local</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resultado-esperado">✅ Resultado Esperado</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vinti4pay/">Referência</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../about.md">Sobre</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Vinti4Pay PHP SDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Exemplos</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/erilshackle/vinti4pay-php/edit/master/docs/exemplos.md">Edit on erilshk/vinti4pay-php</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exemplo-completo-de-integracao-vinti4pay">🧪 Exemplo Completo de Integração (Vinti4Pay)</h1>
+<p>Este exemplo demonstra <strong>todo o fluxo de pagamento com Vinti4Pay</strong>, desde a geração do pedido, criação do formulário de checkout, processamento do retorno e tratamento do callback automático.</p>
+<hr />
+<h2 id="1-estrutura-basica-de-arquivos">⚙️ 1. Estrutura Básica de Arquivos</h2>
+<p>Crie os seguintes arquivos no seu ambiente de testes (por exemplo, <code>localhost:8000</code>):</p>
+<pre><code>/project-root/
+├── composer.json
+├── vendor/
+├── vinti4.php            ← página de checkout e retorno
+├── callback.php          ← endpoint público de callback
+└── .env                  ← suas credenciais de teste
+</code></pre>
+<hr />
+<h2 id="2-configuracao">🔐 2. Configuração</h2>
+<p>No arquivo <code>.env</code> (ou variáveis de ambiente):</p>
+<pre><code class="language-ini">VINTI4_POS_ID=90000443
+VINTI4_AUT_CODE=SEU_AUTH_CODE_DE_TESTE
+</code></pre>
+<hr />
+<h2 id="3-checkout-e-redirecionamento-vinti4php">💳 3. Checkout e Redirecionamento (<code>vinti4.php</code>)</h2>
+<p>Crie o arquivo <code>vinti4.php</code>:</p>
+<pre><code class="language-php">&lt;?php
+
+use Erilshk\Vinti4Pay\Vinti4Pay;
+use Erilshk\Vinti4Pay\Vinti4Result;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$posID = getenv('VINTI4_POS_ID');
+$authCode = getenv('VINTI4_AUTH_CODE');
+$vinti4 = new Vinti4Pay($posID, $authCode);
+
+// === Caso seja o retorno do gateway (POST) ===
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $response = $vinti4-&gt;processResponse($_POST);
+    $result = new Vinti4Result($response);
+
+    $result
+        -&gt;onSuccessfulTransaction(function (Vinti4Result $r) {
+            file_put_contents('payments.log', json_encode($r-&gt;toArray(), JSON_PRETTY_PRINT), FILE_APPEND);
+            echo $r-&gt;generateReceipt();
+        })
+        -&gt;onFailedTransaction(function (Vinti4Result $r) {
+            echo &quot;&lt;p&gt;Falha no pagamento: {$r-&gt;message}&lt;/p&gt;&quot;;
+        })
+        -&gt;onCancelledTransaction(function (Vinti4Result $r) {
+            echo &quot;&lt;p&gt;Pagamento cancelado pelo utilizador.&lt;/p&gt;&quot;;
+        });
+
+    exit;
+}
+
+// === Checkout inicial (GET) ===
+if (isset($_POST['amount'])) {
+    $amount = (float) $_POST['amount'];
+
+    // Cria a transação
+    $fields = $vinti4-&gt;preparePayment(
+        amount: $amount,
+        responseUrl: 'http://localhost:8000/vinti4.php', // retorno local
+        options: [
+            'merchantRef' =&gt; 'TEST-' . uniqid(),
+            'merchantSession' =&gt; session_id(),
+        ]
+    );
+
+    // Redireciona o utilizador para o ambiente de pagamento
+    echo $vinti4-&gt;generateHtmlForm($fields);
+    exit;
+}
+
+// === Página inicial de teste ===
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;pt&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Teste Vinti4Pay&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 60px auto; text-align: center; }
+        input, button { padding: 10px; width: 100%; margin-top: 10px; font-size: 1rem; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;💳 Teste de Pagamento Vinti4&lt;/h2&gt;
+    &lt;form method=&quot;POST&quot; action=&quot;&quot;&gt;
+        &lt;input type=&quot;number&quot; name=&quot;amount&quot; step=&quot;0.01&quot; min=&quot;1&quot; placeholder=&quot;Montante (ex: 2500)&quot; required&gt;
+        &lt;button type=&quot;submit&quot;&gt;Pagar com Vinti4&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr />
+<h2 id="4-endpoint-de-callback-callbackphp">🔁 4. Endpoint de Callback (<code>callback.php</code>)</h2>
+<blockquote>
+<p>O callback é a notificação direta da Vinti4Net ao servidor, confirmando o estado final da transação.</p>
+</blockquote>
+<pre><code class="language-php">&lt;?php
+
+use Erilshk\Vinti4Pay\Vinti4Pay;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$vinti4 = new Vinti4Pay(getenv('VINTI4_POS_ID'), getenv('VINTI4_AUTH_CODE'));
+
+$response = $vinti4-&gt;processResponse($_POST);
+
+file_put_contents('callback.log', json_encode($response, JSON_PRETTY_PRINT), FILE_APPEND);
+
+// Sempre retornar HTTP 200 OK
+http_response_code(200);
+</code></pre>
+<hr />
+<h2 id="5-fluxo-de-execucao">📜 5. Fluxo de Execução</h2>
+<pre><code>Cliente → vinti4.php (checkout)
+   ↓
+Formulário POST → Vinti4Net
+   ↓
+Página de Pagamento Vinti4Net
+   ↓
+→ Retorno ao comerciante (responseUrl)
+→ Callback HTTP POST (callback.php)
+</code></pre>
+<hr />
+<h2 id="6-estrutura-de-dados-recebida-callback">🧩 6. Estrutura de Dados Recebida (Callback)</h2>
+<pre><code class="language-json">{
+  &quot;status&quot;: &quot;SUCCESS&quot;,
+  &quot;message&quot;: &quot;Transação aprovada&quot;,
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;merchantRespMerchantRef&quot;: &quot;TEST-6720ef3d5bc&quot;,
+    &quot;merchantRespPurchaseAmount&quot;: &quot;2500.00&quot;,
+    &quot;merchantRespPurchaseCurrency&quot;: &quot;132&quot;,
+    &quot;merchantRespApprovalCode&quot;: &quot;A12345&quot;
+  }
+}
+</code></pre>
+<hr />
+<h2 id="7-procedimento-de-teste-local">🧪 7. Procedimento de Teste Local</h2>
+<ol>
+<li><strong>Inicie o servidor embutido PHP</strong></li>
+</ol>
+<p><code>bash
+   php -S localhost:8000</code></p>
+<ol>
+<li>Acesse no navegador:</li>
+</ol>
+<p><code>http://localhost:8000/vinti4.php</code></p>
+<ol>
+<li>
+<p><strong>Digite um valor</strong> (ex: <code>2500</code>) e clique em <strong>Pagar com Vinti4</strong>.
+   O sistema irá gerar o formulário de checkout e redirecionar automaticamente para o ambiente Vinti4Net (em produção ou sandbox).</p>
+</li>
+<li>
+<p>Após confirmar o pagamento, você será redirecionado de volta à página local (<code>vinti4.php</code>) e o callback será executado em paralelo.</p>
+</li>
+<li>
+<p>Consulte os arquivos gerados:</p>
+</li>
+</ol>
+<p><code>payments.log
+   callback.log</code></p>
+<p>Esses arquivos contêm os registros de todas as transações processadas.</p>
+<hr />
+<h2 id="resultado-esperado">✅ Resultado Esperado</h2>
+<ul>
+<li>Transações bem-sucedidas devem exibir um <strong>recibo formatado</strong> (<code>generateReceipt()</code>).</li>
+<li>Logs devem conter a resposta completa do gateway.</li>
+<li>Callback deve retornar <code>HTTP 200</code> sem conteúdo HTML.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../callback/" class="btn btn-neutral float-left" title="Callback / Retorno"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../vinti4pay/" class="btn btn-neutral float-right" title="Referência">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/erilshackle/vinti4pay-php" class="fa fa-code-fork" style="color: #fcfcfc"> erilshk/vinti4pay-php</a>
+        </span>
+    
+    
+      <span><a href="../callback/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../vinti4pay/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
